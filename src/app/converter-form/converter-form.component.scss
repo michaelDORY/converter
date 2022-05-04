@@ -1,0 +1,42 @@
+.converter-form {
+  min-width: 30vw;
+  max-width: 40vw;
+  min-height: 30vh;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+
+  .reverse-btn {
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 100px;
+    transition: all 0.5s ease-in-out;
+    padding: 20px;
+
+    &.isReversed {
+      transform: rotate(-180deg);
+      transition: all 0.5s ease-in-out;
+    }
+
+    &:hover {
+      box-shadow: rgba(172, 89, 239, 0.2) 0 7px 15px 0;
+      transition: all 0.5s ease-in-out;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover img{
+      transform: scale(1.2);
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}

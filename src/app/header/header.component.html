@@ -1,0 +1,36 @@
+<header *ngIf="!loading; else LoadingTmpl">
+    <img class="logo" src="assets/icons/logo.png" alt="logo">
+    <div class="groups">
+      <div class="group">
+        <h2>Purchase</h2>
+        <ul>
+          <li class="item">
+            <img class="currency-icon" src="assets/icons/dollar.png" alt="usd">
+            <p>{{currencyService.currencyObj['USD'].buy}}</p>
+          </li>
+          <li>
+            <img class="currency-icon" src="assets/icons/euro.png" alt="eur">
+            <p>{{currencyService.currencyObj['EUR'].buy}}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="group">
+        <h2>Sale</h2>
+        <ul>
+          <li>
+            <img class="currency-icon" src="assets/icons/dollar.png" alt="usd">
+            <p>{{currencyService.currencyObj['USD'].sale}}</p>
+          </li>
+          <li>
+            <img class="currency-icon" src="assets/icons/euro.png" alt="eur">
+            <p>{{currencyService.currencyObj['EUR'].sale}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+</header>
+<ng-template #LoadingTmpl>
+  <header>
+    <h1>Loading...</h1>
+  </header>
+</ng-template>

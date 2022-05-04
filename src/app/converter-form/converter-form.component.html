@@ -1,0 +1,17 @@
+<form class="converter-form">
+  <app-currency-group
+    [defaultOptionName]="'UAN'"
+    [indexOfGroup]="0"
+    (updateGroupInfo)="updateGroups($event)"
+    [inputValue]="resultGroup && resultGroup.indexOfGroup === 0 && convertedResult ? convertedResult : ''"
+  ></app-currency-group>
+  <button type="button" class="reverse-btn" (click)="reverse()" [ngClass]="{isReversed: isArrowReversed}">
+    <img src="assets/icons/reverse-icon.png" alt="reverse">
+  </button>
+  <app-currency-group
+    [defaultOptionName]="'EUR'"
+    [indexOfGroup]="1"
+    (updateGroupInfo)="updateGroups($event)"
+    [inputValue]="resultGroup && resultGroup.indexOfGroup === 1 && convertedResult ? convertedResult : ''"
+  ></app-currency-group>
+</form>

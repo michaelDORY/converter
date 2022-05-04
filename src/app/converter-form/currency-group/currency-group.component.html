@@ -1,0 +1,14 @@
+<div class="currency-group">
+  <div class="select-wrapper">
+    <select [(ngModel)]="selectedOption" (change)="update()">
+      <option
+        *ngFor="let option of selectOptions"
+        [selected]="selectedOption.name === option.name"
+        [ngValue]="option"
+      >
+        {{option.name}}
+      </option>
+    </select>
+  </div>
+  <input type="number" [(ngModel)]="inputValue" (input)="isGroupActive = true; update()">
+</div>
