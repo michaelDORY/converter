@@ -2,12 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CurrencyService} from "../shared/currency.service";
 import {ConvertPipe} from "../pipes/convert.pipe";
 
-interface ConvertInfo {
-  from: string,
-  to: string,
-  amount: number
-}
-
 interface GroupInfo {
   option: string,
   amount: number,
@@ -22,11 +16,13 @@ interface GroupInfo {
 })
 export class ConverterFormComponent implements OnInit {
   options = ["EUR", "UAH", "USD"];
+  loading = true;
+  error = false;
 
   isArrowReversed = false;
   firstGroup: GroupInfo = {
     option: this.options[0],
-    amount: 1,
+    amount: 10,
     isForResult: false
   };
   secondGroup: GroupInfo = {
@@ -39,11 +35,14 @@ export class ConverterFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateResult()
-  }
-
-  ngAfterViewInit() {
-    this.updateResult()
+      this.currencyService.fetchCurrency().subscribe((res) => {
+          this.loading = false;
+          this.updateResult();
+          this.error = false;
+      }, () => {
+        this.error = true;
+        this.loading = false;
+      });
   }
 
   reverse() {
@@ -70,20 +69,19 @@ export class ConverterFormComponent implements OnInit {
       resultGroup = this.secondGroup;
       convertableGroup = this.firstGroup;
     }
-    console.log(this.converterPipe.transform(convertableGroup.amount, convertableGroup.option, resultGroup.option))
     resultGroup.amount = this.converterPipe.transform(convertableGroup.amount, convertableGroup.option, resultGroup.option);
   }
 
   onChange(event: Event) {
     switch ((<HTMLElement>event.target).getAttribute('name')) {
       case ('firstInput'):
-        this.firstGroup.amount = +(<HTMLInputElement>event.target).value;
+        this.firstGroup.amount = Math.abs(+(<HTMLInputElement>event.target).value);
         this.firstGroup.isForResult = false;
         this.secondGroup.isForResult = true;
         if(this.isArrowReversed) this.isArrowReversed = false;
         break;
       case ('secondInput'):
-        this.secondGroup.amount = +(<HTMLInputElement>event.target).value;
+        this.secondGroup.amount = Math.abs(+(<HTMLInputElement>event.target).value);
         this.secondGroup.isForResult = false;
         this.firstGroup.isForResult = true;
         if(!this.isArrowReversed) this.isArrowReversed = true;

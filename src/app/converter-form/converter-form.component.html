@@ -1,4 +1,4 @@
-<form class="converter-form">
+<div class="converter-form" *ngIf="!error && !loading">
   <form class="currency-group">
     <div class="select-wrapper">
       <select (change)="onChange($event)" name="firstSelect">
@@ -11,7 +11,7 @@
         </option>
       </select>
     </div>
-    <input type="number" [value]="firstGroup.amount" (input)="onChange($event)" name="firstInput">
+    <input type="number" min="0" [value]="firstGroup.amount" (input)="onChange($event)" name="firstInput">
   </form>
   <button type="button" class="reverse-btn" (click)="reverse()" [ngClass]="{isReversed: isArrowReversed}">
     <img src="assets/icons/reverse-icon.png" alt="reverse">
@@ -28,6 +28,13 @@
         </option>
       </select>
     </div>
-    <input type="number" [value]="secondGroup.amount" (input)="onChange($event)" name="secondInput">
+    <input type="number" [value]="loading ? null : secondGroup.amount" (input)="onChange($event)" name="secondInput">
   </form>
-</form>
+</div>
+
+<div *ngIf="loading">
+  <h1>Loading...</h1>
+</div>
+<div *ngIf="error">
+  <h1>Sorry, we're in trouble</h1>
+</div>

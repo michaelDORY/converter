@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable, tap} from "rxjs";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {Observable, tap, catchError, throwError} from "rxjs";
 
 interface Currency {
   ccy: string,
@@ -25,7 +25,8 @@ export class CurrencyService {
 
   fetchCurrency(): Observable<Currency[]> {
     return this.http.get<Currency[]>("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5")
-      .pipe(tap((response) => {
+      .pipe(
+        tap((response) => {
         this.currencyArr = response;
         this.currencyObj = response.reduce((acc: CurrencyObj, item) => {
           const fixedItem = {...item};
@@ -34,7 +35,11 @@ export class CurrencyService {
           acc[item.ccy] = fixedItem;
           return acc;
         }, {})
-      }));
+      }), catchError(this.handleError));
+  }
+
+  handleError(error: HttpErrorResponse) {
+    return throwError("Server Error");
   }
 
   shortNumber(number: number, digitsAfterDot: number): number {

@@ -7,6 +7,7 @@ import { ConverterFormComponent } from './converter-form/converter-form.componen
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {ConvertPipe} from "./pipes/convert.pipe";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {ConvertPipe} from "./pipes/convert.pipe";
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

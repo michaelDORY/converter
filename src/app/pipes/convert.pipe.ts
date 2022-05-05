@@ -7,7 +7,6 @@ export class ConvertPipe implements PipeTransform {
   constructor(private currencyService: CurrencyService) {
   }
   transform(value: number, from: string, to: string): number {
-    console.log("res")
     const arr = this.currencyService.currencyArr;
     const toBuy = arr.find(item => item.ccy === to)?.buy;
     const fromBuy = arr.find(item => item.ccy === from)?.buy;
