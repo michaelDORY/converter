@@ -1,4 +1,4 @@
-<header *ngIf="!loading; else LoadingTmpl">
+<header>
     <img class="logo" src="assets/icons/logo.png" alt="logo">
     <div class="groups">
       <div class="group">
@@ -6,11 +6,11 @@
         <ul>
           <li class="item">
             <img class="currency-icon" src="assets/icons/dollar.png" alt="usd">
-            <p>{{currencyService.currencyObj['USD'].buy}}</p>
+            <p>{{loading ? "???" : currencyService.currencyObj['USD'].buy}}</p>
           </li>
           <li>
             <img class="currency-icon" src="assets/icons/euro.png" alt="eur">
-            <p>{{currencyService.currencyObj['EUR'].buy}}</p>
+            <p>{{loading ? "???" : currencyService.currencyObj['EUR'].buy}}</p>
           </li>
         </ul>
       </div>
@@ -19,18 +19,13 @@
         <ul>
           <li>
             <img class="currency-icon" src="assets/icons/dollar.png" alt="usd">
-            <p>{{currencyService.currencyObj['USD'].sale}}</p>
+            <p>{{loading ? "???" : currencyService.currencyObj['USD'].sale}}</p>
           </li>
           <li>
             <img class="currency-icon" src="assets/icons/euro.png" alt="eur">
-            <p>{{currencyService.currencyObj['EUR'].sale}}</p>
+            <p>{{loading ? "???" : currencyService.currencyObj['EUR'].sale}}</p>
           </li>
         </ul>
       </div>
     </div>
 </header>
-<ng-template #LoadingTmpl>
-  <header>
-    <h1>Loading...</h1>
-  </header>
-</ng-template>

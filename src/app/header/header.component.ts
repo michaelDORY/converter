@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.currencyService.fetchCurrency().subscribe((res) => {
       this.loading = false;
-      console.log(this.currencyService.currencyObj)
     });
   }
 
