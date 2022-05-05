@@ -1,17 +1,33 @@
 <form class="converter-form">
-  <app-currency-group
-    [defaultOptionName]="'UAN'"
-    [indexOfGroup]="0"
-    (updateGroupInfo)="updateGroups($event)"
-    [inputValue]="resultGroup && resultGroup.indexOfGroup === 0 && convertedResult ? convertedResult : ''"
-  ></app-currency-group>
+  <form class="currency-group">
+    <div class="select-wrapper">
+      <select (change)="onChange($event)" name="firstSelect">
+        <option
+          *ngFor="let option of options"
+          [selected]="option === firstGroup.option"
+          value="{{option}}"
+        >
+          {{option}}
+        </option>
+      </select>
+    </div>
+    <input type="number" [value]="firstGroup.amount" (input)="onChange($event)" name="firstInput">
+  </form>
   <button type="button" class="reverse-btn" (click)="reverse()" [ngClass]="{isReversed: isArrowReversed}">
     <img src="assets/icons/reverse-icon.png" alt="reverse">
   </button>
-  <app-currency-group
-    [defaultOptionName]="'EUR'"
-    [indexOfGroup]="1"
-    (updateGroupInfo)="updateGroups($event)"
-    [inputValue]="resultGroup && resultGroup.indexOfGroup === 1 && convertedResult ? convertedResult : ''"
-  ></app-currency-group>
+  <form class="currency-group">
+    <div class="select-wrapper">
+      <select (change)="onChange($event)" name="secondSelect">
+        <option
+          *ngFor="let option of options"
+          [selected]="option === secondGroup.option"
+          value="{{option}}"
+        >
+          {{option}}
+        </option>
+      </select>
+    </div>
+    <input type="number" [value]="secondGroup.amount" (input)="onChange($event)" name="secondInput">
+  </form>
 </form>

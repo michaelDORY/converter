@@ -1,6 +1,5 @@
 .converter-form {
-  min-width: 30vw;
-  max-width: 40vw;
+  width: 500px;
   min-height: 30vh;
   padding: 30px;
   border-radius: 15px;
@@ -37,6 +36,28 @@
     &:hover img{
       transform: scale(1.2);
       transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+.currency-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  & input {
+    width: 150px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid rgba(107, 36, 131, 0.73);
+    padding: 5px;
+
+    &:focus, &:active {
+      outline: 2px solid #6b2483;
+      box-shadow: rgba(172, 89, 239, 0.2) 0 7px 15px 0;
     }
   }
 }
